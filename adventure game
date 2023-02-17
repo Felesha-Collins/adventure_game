@@ -1,0 +1,88 @@
+import random
+import time
+
+def print_pause(message):
+    print(message)
+    time.sleep(2)
+
+def intro():
+    print_pause("You are stranded on a deserted island.")
+    print_pause("You need to find a way to escape!")
+    print_pause("You can see a beach, a jungle, and a cave.")
+
+def get_choice():
+    print_pause("Where would you like to go?")
+    while True:
+        choice = input("Enter 1 to go to the beach.\n"
+                       "Enter 2 to go to the jungle.\n"
+                       "Enter 3 to go to the cave.\n")
+        if choice in ['1', '2', '3']:
+            return choice
+        else:
+            print_pause("Invalid choice. Please enter 1, 2, or 3.")
+
+def beach(items):
+    print_pause("You are at the beach.")
+    if "boat" in items:
+        print_pause("You already found a boat here.")
+    else:
+        print_pause("You see a boat on the shore.")
+        items.append("boat")
+    print_pause("You can go back to where you started.")
+    return items
+
+def jungle(items):
+    print_pause("You are in the jungle.")
+    if "rope" in items:
+        print_pause("You already found a rope here.")
+    else:
+        print_pause("You see a rope hanging from a tree.")
+        items.append("rope")
+    print_pause("You can go back to where you started.")
+    return items
+
+def cave(items):
+    print_pause("You are in a dark cave.")
+    if "flashlight" in items:
+        print_pause("You already found a flashlight here.")
+    else:
+        print_pause("You see a flashlight on the ground.")
+        items.append("flashlight")
+    print_pause("You can go back to where you started.")
+    return items
+
+def ending(items):
+    if "boat" in items and "rope" in items and "flashlight" in items:
+        print_pause("You use the boat, rope, and flashlight to escape the island!")
+        print_pause("You win!")
+    else:
+        print_pause("You are still missing some items.")
+        print_pause("You need to find a boat, rope, and flashlight to escape.")
+        print_pause("You lose.")
+    play_again()
+
+def play_again():
+    while True:
+        choice = input("Would you like to play again? (y/n)\n")
+        if choice == "y":
+            play_game()
+        elif choice == "n":
+            print_pause("Thanks for playing! Goodbye.")
+            exit()
+        else:
+            print_pause("Invalid choice. Please enter y or n.")
+
+def play_game():
+    items = []
+    intro()
+    while True:
+        choice = get_choice()
+        if choice == "1":
+            items = beach(items)
+        elif choice == "2":
+            items = jungle(items)
+        elif choice == "3":
+            items = cave(items)
+        ending(items)
+
+play_game()
