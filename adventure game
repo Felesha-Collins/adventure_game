@@ -1,88 +1,107 @@
-import random
 import time
-
-def print_pause(message):
-    print(message)
-    time.sleep(2)
+import random
 
 def intro():
-    print_pause("You are stranded on a deserted island.")
-    print_pause("You need to find a way to escape!")
-    print_pause("You can see a beach, a jungle, and a cave.")
+    print("Welcome to the adventure game!")
+    time.sleep(1)
+    print("You are standing at the entrance to a dark and mysterious cave.")
+    time.sleep(1)
+    print("You must explore the cave to find the hidden treasure.")
+    time.sleep(1)
+    print("Choose your path wisely!")
 
-def get_choice():
-    print_pause("Where would you like to go?")
-    while True:
-        choice = input("Enter 1 to go to the beach.\n"
-                       "Enter 2 to go to the jungle.\n"
-                       "Enter 3 to go to the cave.\n")
-        if choice in ['1', '2', '3']:
-            return choice
+def choose_path():
+    print("Which path will you take?")
+    time.sleep(1)
+    print("1. Left")
+    time.sleep(1)
+    print("2. Right")
+    time.sleep(1)
+    path = input("Enter your choice (1 or 2): ")
+    if path == "1":
+        print("You chose the left path.")
+        time.sleep(1)
+        print("You encounter a giant spider!")
+        time.sleep(1)
+        print("Do you fight the spider or run away?")
+        time.sleep(1)
+        fight_or_run = input("Enter 'fight' or 'run': ")
+        if fight_or_run == "fight":
+            print("You defeat the spider and continue on your journey.")
+            time.sleep(1)
+            choose_path_2()
+        elif fight_or_run == "run":
+            print("You run away and go back to the entrance.")
+            time.sleep(1)
+            choose_path()
         else:
-            print_pause("Invalid choice. Please enter 1, 2, or 3.")
-
-def beach(items):
-    print_pause("You are at the beach.")
-    if "boat" in items:
-        print_pause("You already found a boat here.")
+            print("Invalid input, please enter 'fight' or 'run'.")
+            choose_path()
+    elif path == "2":
+        print("You chose the right path.")
+        time.sleep(1)
+        print("You come across a deep chasm.")
+        time.sleep(1)
+        print("Do you try to jump across or find another way?")
+        time.sleep(1)
+        jump_or_find = input("Enter 'jump' or 'find': ")
+        if jump_or_find == "jump":
+            print("You try to jump across the chasm...")
+            time.sleep(1)
+            if random.choice([True, False]):
+                print("You make the jump and find a treasure chest!")
+                time.sleep(1)
+                print("Congratulations, you have completed the adventure game!")
+            else:
+                print("You fall into the chasm and die.")
+                time.sleep(1)
+                play_again()
+        elif jump_or_find == "find":
+            print("You try to find another way but get lost in the cave.")
+            time.sleep(1)
+            choose_path()
+        else:
+            print("Invalid input, please enter 'jump' or 'find'.")
+            choose_path()
     else:
-        print_pause("You see a boat on the shore.")
-        items.append("boat")
-    print_pause("You can go back to where you started.")
-    return items
+        print("Invalid input, please enter 1 or 2.")
+        choose_path()
 
-def jungle(items):
-    print_pause("You are in the jungle.")
-    if "rope" in items:
-        print_pause("You already found a rope here.")
+def choose_path_2():
+    print("You continue on the path and come across a fork in the road.")
+    time.sleep(1)
+    print("1. Left")
+    time.sleep(1)
+    print("2. Right")
+    time.sleep(1)
+    path = input("Enter your choice (1 or 2): ")
+    if path == "1":
+        print("You chose the left path.")
+        time.sleep(1)
+        print("You find a room filled with treasure!")
+        time.sleep(1)
+        print("Congratulations, you have completed the adventure game!")
+    elif path == "2":
+        print("You chose the right path.")
+        time.sleep(1)
+        print("You enter a room filled with traps!")
+        time.sleep(1)
+        print("You manage to escape but are badly injured.")
+        time.sleep(1)
+        play_again()
     else:
-        print_pause("You see a rope hanging from a tree.")
-        items.append("rope")
-    print_pause("You can go back to where you started.")
-    return items
-
-def cave(items):
-    print_pause("You are in a dark cave.")
-    if "flashlight" in items:
-        print_pause("You already found a flashlight here.")
-    else:
-        print_pause("You see a flashlight on the ground.")
-        items.append("flashlight")
-    print_pause("You can go back to where you started.")
-    return items
-
-def ending(items):
-    if "boat" in items and "rope" in items and "flashlight" in items:
-        print_pause("You use the boat, rope, and flashlight to escape the island!")
-        print_pause("You win!")
-    else:
-        print_pause("You are still missing some items.")
-        print_pause("You need to find a boat, rope, and flashlight to escape.")
-        print_pause("You lose.")
-    play_again()
+        print("Invalid input, please enter 1 or 2.")
+        choose_path_2()
 
 def play_again():
-    while True:
-        choice = input("Would you like to play again? (y/n)\n")
-        if choice == "y":
-            play_game()
-        elif choice == "n":
-            print_pause("Thanks for playing! Goodbye.")
-            exit()
-        else:
-            print_pause("Invalid choice. Please enter y or n.")
-
-def play_game():
-    items = []
-    intro()
-    while True:
-        choice = get_choice()
-        if choice == "1":
-            items = beach(items)
-        elif choice == "2":
-            items = jungle(items)
-        elif choice == "3":
-            items = cave(items)
-        ending(items)
-
-play_game()
+    print ("Would you like to play again?")
+    time.sleep(1)
+    path = input ("Enter your choice (1 or 2): ")
+    time.sleep(1)
+    if path == "1":
+        time.sleep(1)
+        print("Yayy! Let's play again")
+    elif path == "2":
+        time.sleep(1)
+        print("Thank you for playing our Adventure Game! Have a great day!")
+        exit()
